@@ -1,4 +1,5 @@
 -- Toggle grayscale
+
 tell application "System Preferences"
 	launch
 	reveal anchor "Seeing_ColorFilters" of pane "Accessibility"
@@ -40,3 +41,9 @@ tell application "System Events"
 end tell
 
 tell application "System Preferences" to if it is running then quit
+
+tell application "System Events"
+	tell appearance preferences
+		set dark mode to not dark mode
+	end tell
+end tell
