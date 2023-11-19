@@ -1,22 +1,22 @@
 -- Toggle grayscale
 
-tell application "System Preferences"
-	launch
-	reveal anchor "Seeing_ColorFilters" of pane "Accessibility"
-end tell
+-- tell application "System Preferences"
+--	launch
+--	reveal anchor "Seeing_ColorFilters" of pane "Accessibility"
+-- end tell
 
-tell application "System Events"
-	tell application process "System Preferences"
-		set frontmost to true
-		delay 1
-		tell window "Accessibility"
-			repeat until exists checkbox "Enable Color Filters" of tab group 1 of group 1
-				delay 0.01
-			end repeat
-			click first checkbox of tab group 1 of group 1
-		end tell
-	end tell
-end tell
+-- tell application "System Events"
+--	tell application process "System Preferences"
+--		set frontmost to true
+--		delay 1
+--		tell window "Accessibility"
+--			repeat until exists checkbox "Enable Color Filters" of tab group 1 of group 1
+--				delay 0.01
+--			end repeat
+--			click first checkbox of tab group 1 of group 1
+--		end tell
+--	end tell
+-- end tell
 
 -- Toggle Other Display Accessibility those are good for eink
 
@@ -33,14 +33,22 @@ tell application "System Events"
 				delay 0.01
 			end repeat
 			click second checkbox of tab group 1 of group 1 -- Reduce motion
-			click third checkbox of tab group 1 of group 1 -- Increase contrast
-			-- click fourth checkbox of tab group 1 of group 1 -- Reduce Trans
-			click fifth checkbox of tab group 1 of group 1 -- Show toolbar btn shape			
+			click fifth checkbox of tab group 1 of group 1 -- Show toolbar btn shape
+			
+			set IncreaseContrast to third checkbox of tab group 1 of group 1
+			click IncreaseContrast
+			-- Click ReduceTrans when IncreaseContrast is not checked
+			set ReduceTrans to fourth checkbox of tab group 1 of group 1
+			tell IncreaseContrast
+				if not (its value as boolean) then click ReduceTrans
+			end tell
 		end tell
 	end tell
 end tell
 
 tell application "System Preferences" to if it is running then quit
+
+-- Toggle Light Theme
 
 tell application "System Events"
 	tell appearance preferences
