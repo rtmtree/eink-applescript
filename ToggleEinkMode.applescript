@@ -45,12 +45,18 @@ tell application "System Events"
 		end tell
 	end tell
 end tell
+tell application "System Preferences" to if it is running then quit
+
 
 -- Toggle Other Display Accessibility those are good for eink, for Sonoma
 
 tell application "System Settings"
+	reveal pane id "com.apple.Accessibility-Settings.extension"
+	delay 0.5
 	reveal anchor "Display" of pane id "com.apple.Accessibility-Settings.extension"
+	delay 0.5
 	activate
+	delay 0.5
 end tell
 
 tell application "System Events"
@@ -66,10 +72,10 @@ tell application "System Events"
 		-- click ReduceTrans
 	end tell
 end tell
+tell application "System Settings" to quit
 
 
 
-tell application "System Preferences" to if it is running then quit
 
 -- Toggle Light Theme
 
