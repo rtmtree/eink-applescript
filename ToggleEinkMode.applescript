@@ -18,7 +18,7 @@
 --	end tell
 -- end tell
 
--- Toggle Other Display Accessibility those are good for eink
+-- Toggle Other Display Accessibility those are good for eink, for Monterey
 
 tell application "System Preferences"
 	launch
@@ -45,6 +45,29 @@ tell application "System Events"
 		end tell
 	end tell
 end tell
+
+-- Toggle Other Display Accessibility those are good for eink, for Sonoma
+
+tell application "System Settings"
+	reveal anchor "Display" of pane id "com.apple.Accessibility-Settings.extension"
+	activate
+end tell
+
+tell application "System Events"
+	tell window 1 of application process "System Settings"
+		get entire contents
+		set ReduceMotion to checkbox "Reduce motion" of group 1 of scroll area 1 of group 1 of group 2 of splitter group 1 of group 1 of window "Display" of application process "System Settings" of application "System Events"
+		set IncreaseContrast to checkbox "Increase contrast" of group 1 of scroll area 1 of group 1 of group 2 of splitter group 1 of group 1 of window "Display" of application process "System Settings" of application "System Events"
+		set DiffWithoutColor to checkbox "Differentiate without color" of group 1 of scroll area 1 of group 1 of group 2 of splitter group 1 of group 1 of window "Display" of application process "System Settings" of application "System Events"
+		set ReduceTrans to checkbox "Reduce Transparency" of group 1 of scroll area 1 of group 1 of group 2 of splitter group 1 of group 1 of window "Display" of application process "System Settings" of application "System Events"
+		click ReduceMotion
+		click IncreaseContrast
+		click DiffWithoutColor
+		-- click ReduceTrans
+	end tell
+end tell
+
+
 
 tell application "System Preferences" to if it is running then quit
 
