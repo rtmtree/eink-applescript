@@ -7,5 +7,7 @@
 
 #### Demo video
 
-<video src="demo_vid.mov" controls="controls" style="max-width: 720px;">
+<video width="640" height="360" controls>
+  <source src="demo_vid.mov" type="video/quicktime">
+  Your browser does not support the `.mov` video format.
 </video>
